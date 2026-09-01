@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f7f9fc">
   <link rel="manifest" href="manifest.webmanifest">
   <title>Routine Tracker</title>
   <style>
-    :root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17202a;background:#fff}
-    *{box-sizing:border-box}body{margin:0}.app{max-width:760px;margin:auto;padding:24px 16px 48px}
-    h1,h2,p{margin:0}.muted{color:#667085}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:20px}
-    .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}button,input,select{font:inherit}button{min-height:44px;border:1px solid #d0d5dd;border-radius:12px;background:#fff;padding:0 14px;cursor:pointer}
-    button:disabled{cursor:not-allowed;opacity:.65}.primary{background:#17202a;color:#fff;border-color:#17202a}.card{border:1px solid #e4e7ec;border-radius:18px;padding:16px;margin-top:14px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bar{height:8px;background:#eef0f3;border-radius:99px;overflow:hidden;margin:12px 0 7px}.fill{height:100%;background:#17202a;width:0}
-    .task{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:14px 0;border-bottom:1px solid #eef0f3}
-    .task:last-child{border-bottom:0}.taskname{font-weight:600}.tag{font-size:12px;color:#667085;margin-top:3px}
-    .done{background:#eef6ee;border-color:#b7d5b8}.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);padding:24px;align-items:center;justify-content:center}.modal.show{display:flex}
-    .modalbox{background:#fff;border-radius:18px;padding:18px;max-width:420px;width:100%}.field{display:grid;gap:6px;margin:12px 0}.field input,.field select{height:44px;border:1px solid #d0d5dd;border-radius:10px;padding:0 10px}.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}.login{width:100%;max-width:390px}.login h1{margin-bottom:8px}.login .card{margin-top:20px}.login button{width:100%;margin-top:8px}.error{color:#b42318;margin-top:10px;font-size:14px}
-    @media(max-width:520px){.grid{grid-template-columns:1fr}.task{grid-template-columns:minmax(0,1fr) auto}.task button:last-child{grid-column:2}.top{align-items:center}.actions{width:100%}.actions button{flex:1}}
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17203a;background:#f7f9fc}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f7f9fc 0,#fff 70%);min-height:100vh}.app{max-width:760px;margin:auto;padding:24px 18px 42px}
+    button,input,select{font:inherit}button{border:0;cursor:pointer}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:11px}.logo{width:42px;height:42px;border-radius:13px;background:#1769ff;color:#fff;display:grid;place-items:center;font-size:23px;font-weight:800;box-shadow:0 7px 18px rgba(23,105,255,.22)}h1,h2,p{margin:0}.brand h1{font-size:20px;letter-spacing:-.4px}.date{font-size:13px;color:#778198;margin-top:3px}.logout{padding:10px 14px;border:1px solid #e1e6ef;border-radius:11px;background:#fff;color:#34405a;font-weight:600}
+    .hero{margin-bottom:20px}.hero h2{font-size:29px;letter-spacing:-1px}.hero p{color:#6b768c;margin-top:6px;font-size:15px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:rgba(255,255,255,.92);border:1px solid #e5eaf2;border-radius:20px;padding:18px;box-shadow:0 8px 28px rgba(31,49,79,.055)}.label{color:#657089;font-size:13px;font-weight:600}.big{font-size:32px;font-weight:750;letter-spacing:-1px;margin-top:8px}.sub{color:#7a8497;font-size:13px;margin-top:5px}.accent{color:#1769ff}.green{color:#0b9b67}.purple{color:#7542ee}.orange{color:#ef7d22}
+    .person{position:relative;overflow:hidden;min-height:166px}.person-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.person-name{font-size:19px;font-weight:750}.you-badge{font-size:11px;padding:5px 8px;border-radius:99px;background:#eef5ff;color:#1769ff;font-weight:700}.sticker{width:72px;height:72px;border-radius:24px;display:grid;place-items:center;font-size:47px;margin-top:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}.boy{background:linear-gradient(145deg,#eaf3ff,#dceaff)}.girl{background:linear-gradient(145deg,#fff0fa,#f5ddff)}.score-row{display:flex;align-items:end;justify-content:space-between;margin-top:-3px}.score{font-size:29px;font-weight:800;letter-spacing:-1px}.progress{height:7px;background:#edf0f5;border-radius:99px;overflow:hidden;margin-top:12px}.fill{height:100%;width:0;border-radius:99px;background:#1769ff;transition:width .35s}.person .fill.friend{background:#8a4cf4}.person-note{font-size:12px;color:#7a8497;margin-top:7px}
+    .average{grid-column:1/-1}.average-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.average-value{font-size:34px;font-weight:800;letter-spacing:-1.2px;margin-top:8px}.range{color:#7a8497;font-size:12px}.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.mini{padding:12px 13px;border-radius:14px;background:#f7f9fc;border:1px solid #edf0f5}.mini strong{font-size:15px}.mini span{display:block;font-size:22px;font-weight:800;margin-top:3px}.quote{margin-top:14px;padding:22px 20px;background:linear-gradient(135deg,#edf5ff,#fff);border:1px solid #dce8fa;border-radius:20px;position:relative;overflow:hidden}.quote:after{content:'“';position:absolute;right:18px;bottom:-25px;font-size:120px;line-height:1;color:#dbe9ff;font-weight:800}.quote p{position:relative;z-index:1;font-size:17px;line-height:1.55;font-weight:650;max-width:600px}.quote small{display:block;position:relative;z-index:1;color:#6c7890;margin-top:8px}.status{min-height:20px;text-align:center;color:#b42318;font-size:13px;margin-top:12px}.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px}.login{width:100%;max-width:390px}.login-card{margin-top:20px}.field{display:grid;gap:7px;margin:13px 0}.field span{font-size:13px;font-weight:650;color:#526078}.field input{height:48px;border:1px solid #dce2eb;border-radius:12px;padding:0 13px;outline:none;background:#fff}.field input:focus{border-color:#1769ff;box-shadow:0 0 0 3px rgba(23,105,255,.1)}.login-btn{width:100%;height:48px;border-radius:12px;background:#1769ff;color:#fff;font-weight:700;margin-top:8px}.login-btn:disabled{opacity:.65;cursor:wait}.login-error{color:#b42318;font-size:13px;margin-top:10px;min-height:18px}.login-help{color:#7a8497;font-size:12px;text-align:center;margin-top:14px}
+    @media(max-width:520px){.app{padding:18px 14px 34px}.top{margin-bottom:22px}.hero h2{font-size:25px}.cards{grid-template-columns:1fr 1fr;gap:10px}.card{padding:15px;border-radius:17px}.big{font-size:27px}.person{min-height:155px}.sticker{width:62px;height:62px;font-size:40px;border-radius:20px}.person-name{font-size:17px}.average{grid-column:1/-1}.quote p{font-size:16px}}
+    @media(max-width:360px){.cards{grid-template-columns:1fr}.average{grid-column:auto}.top{align-items:flex-start}.logout{padding:9px 11px}}
   </style>
 </head>
 <body>
@@ -25,22 +22,89 @@
 <script type="module">
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from "./config.js";
-const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY), today=new Date().toISOString().slice(0,10);
+const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const root=document.getElementById('root');
 const USERS={Harshit:{email:'harshit@routine.app'},Sapana:{email:'sapana@routine.app'}};
-let session=null,profile=null,friendProfile=null,tasks=[],logs=new Map();
-function loginScreen(message=''){root.innerHTML=`<main class="login-wrap"><section class="login"><p class="muted">Shared routine tracker</p><h1>Routine Tracker</h1><div class="card"><label class="field">User ID<select id="loginId"><option>Harshit</option><option>Sapana</option></select></label><label class="field">Password<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter password"></label><button class="primary" id="loginBtn">Log in</button><p id="loginError" class="error">${message}</p></div></section></main>`;document.getElementById('loginBtn').onclick=login;document.getElementById('loginPassword').addEventListener('keydown',e=>{if(e.key==='Enter')login()});}
-async function login(){const id=document.getElementById('loginId').value,password=document.getElementById('loginPassword').value;const btn=document.getElementById('loginBtn');btn.disabled=true;btn.textContent='Logging in…';const {error}=await supabase.auth.signInWithPassword({email:USERS[id].email,password});if(error){document.getElementById('loginError').textContent='Incorrect User ID or password.';btn.disabled=false;btn.textContent='Log in';return}await init();}
-async function init(){const {data:{session:s}}=await supabase.auth.getSession();session=s;if(!session){loginScreen();return}renderApp();await load();}
-function renderApp(){root.innerHTML=`<main class="app"><div class="top"><div><p class="muted">Today</p><h1>Routine Tracker</h1><p class="muted" id="who">Loading…</p></div><div class="actions"><button id="logoutBtn">Log out</button><button id="addBtn">+ Add task</button></div></div><div class="grid"><section class="card"><strong>You</strong><strong style="float:right" id="myPct">0%</strong><div class="bar"><div class="fill" id="myBar"></div></div><small class="muted" id="myCount">0/0</small></section><section class="card"><strong>Friend</strong><strong style="float:right" id="friendPct">0%</strong><div class="bar"><div class="fill" id="friendBar"></div></div><small class="muted" id="friendCount">0/0</small></section></div><section class="card"><h2>Today's routine</h2><p class="muted" style="margin-top:4px">Each task can apply to you, your friend, or both.</p><div id="tasks"></div></section><section class="card"><strong>Current streak</strong><span style="float:right">🔥 <span id="streak">0</span> days</span><p class="muted" style="margin-top:6px">Version 1 foundation</p></section><p id="status" class="muted" style="margin-top:14px" aria-live="polite"></p></main><div class="modal" id="modal"><form class="modalbox" id="form"><h2>Add task</h2><label class="field">Task name<input id="name" maxlength="80" required placeholder="e.g. Read 20 minutes"></label><label class="field">Type<select id="type"><option value="checkbox">Normal task</option><option value="water">Water portions</option></select></label><label class="field">Applicable to<select id="whoSelect"><option value="both">Both</option><option value="me">You only</option><option value="friend">Friend only</option></select></label><label class="field" id="portionField" style="display:none">Portion size<input id="portion" type="number" min="1" max="5000" value="250"> ml</label><div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" id="cancel">Cancel</button><button class="primary">Add</button></div></form></div>`;document.getElementById('logoutBtn').onclick=logout;document.getElementById('addBtn').onclick=()=>{document.getElementById('modal').classList.add('show');document.getElementById('name').focus()};document.getElementById('cancel').onclick=()=>document.getElementById('modal').classList.remove('show');document.getElementById('type').onchange=()=>document.getElementById('portionField').style.display=document.getElementById('type').value==='water'?'grid':'none';document.getElementById('form').onsubmit=addTask;}
-async function logout(){await supabase.auth.signOut();session=null;loginScreen();}
-async function load(){const p=await supabase.from('profiles').select('*').eq('id',session.user.id).single();profile=p.data;document.getElementById('who').textContent=profile?.display_name||session.user.email;const m=await supabase.from('friendships').select('user_id,friend_id').or(`user_id.eq.${session.user.id},friend_id.eq.${session.user.id}`).eq('status','accepted');const row=m.data?.[0];const fid=row?(row.user_id===session.user.id?row.friend_id:row.user_id):null;if(fid){const f=await supabase.from('profiles').select('*').eq('id',fid).single();friendProfile=f.data;}const t=await supabase.from('tasks').select('*').order('created_at');tasks=t.data||[];const l=await supabase.from('daily_logs').select('*').eq('log_date',today);logs=new Map((l.data||[]).map(x=>[`${x.task_id}:${x.user_id}`,x]));render();}
-function applicable(t,p){return t.applicable_to==='both'||t.applicable_to===p}
-function render(){const list=document.getElementById('tasks');list.innerHTML='';tasks.forEach(t=>{const row=document.createElement('div');row.className='task';const info=document.createElement('div');info.innerHTML=`<div class="taskname">${escapeHtml(t.name)}</div><div class="tag">${t.applicable_to==='both'?'Both':t.applicable_to==='me'?'You only':'Friend only'}${t.type==='water'?' · water portions':''}</div>`;row.append(info);[['me',session.user.id],['friend',friendProfile?.id]].forEach(([person,uid])=>{const can=!!uid&&applicable(t,person),log=uid?logs.get(`${t.id}:${uid}`):null,b=document.createElement('button');b.disabled=!can;if(t.type==='water'&&can){const ml=Number(log?.quantity||0),target=Number(t.target_quantity||3000);b.textContent=`${ml}/${target} ml`;b.addEventListener('click',()=>addWater(t,uid,log));}else{b.textContent=!can?'N/A':log?.completed?'✓ Done':'○ Pending';if(log?.completed)b.classList.add('done');if(can)b.addEventListener('click',()=>toggle(t,uid,log));}row.append(b)});list.append(row)});updateScores();}
-async function toggle(t,uid,log){const completed=!(log?.completed),r=await supabase.from('daily_logs').upsert({task_id:t.id,user_id:uid,log_date:today,completed,quantity:completed?1:0},{onConflict:'task_id,user_id,log_date'}).select().single();if(r.error){document.getElementById('status').textContent=r.error.message;return}logs.set(`${t.id}:${uid}`,r.data);render();}
-async function addWater(t,uid,log){const current=Number(log?.quantity||0),step=Number(t.portion_size||250),target=Number(t.target_quantity||3000),next=Math.min(target,current+step),r=await supabase.from('daily_logs').upsert({task_id:t.id,user_id:uid,log_date:today,completed:next>=target,quantity:next},{onConflict:'task_id,user_id,log_date'}).select().single();if(r.error){document.getElementById('status').textContent=r.error.message;return}logs.set(`${t.id}:${uid}`,r.data);render();}
-function updateScores(){[['me',session.user.id,'my'],['friend',friendProfile?.id,'friend']].forEach(([p,uid,prefix])=>{const ats=tasks.filter(t=>uid&&applicable(t,p));let done=0,total=ats.length;ats.forEach(t=>{const l=logs.get(`${t.id}:${uid}`);if(t.type==='water')done+=Math.min(Number(l?.quantity||0)/Number(t.target_quantity||3000),1);else if(l?.completed)done+=1});const pct=total?Math.round(done/total*100):0;document.getElementById(`${prefix}Pct`).textContent=pct+'%';document.getElementById(`${prefix}Bar`).style.width=pct+'%';document.getElementById(`${prefix}Count`).textContent=`${Math.round(done)}/${total} complete`;});}
-async function addTask(e){e.preventDefault();const type=document.getElementById('type').value,who=document.getElementById('whoSelect').value,name=document.getElementById('name').value.trim();if(!name)return;const payload={name,type,applicable_to:who,target_quantity:type==='water'?3000:null,portion_size:type==='water'?Math.max(1,Math.min(5000,Number(document.getElementById('portion').value)||250)):null,created_by:session.user.id};const r=await supabase.from('tasks').insert(payload);if(r.error){document.getElementById('status').textContent=r.error.message;return}document.getElementById('form').reset();document.getElementById('modal').classList.remove('show');await load();}
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+let session=null,profile=null,friendProfile=null,tasks=[];
+const todayDate=new Date();
+const today=todayDate.toISOString().slice(0,10);
+const tenDaysAgoDate=new Date(todayDate);tenDaysAgoDate.setDate(tenDaysAgoDate.getDate()-9);
+const tenDaysAgo=tenDaysAgoDate.toISOString().slice(0,10);
+function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function formatDate(d){return new Intl.DateTimeFormat('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(d)}
+function loginScreen(message=''){
+  root.innerHTML=`<main class="login-wrap"><section class="login"><div class="brand"><div class="logo">✓</div><div><h1>Routine Tracker</h1><p class="date">Private shared dashboard</p></div></div><div class="card login-card"><label class="field"><span>User ID</span><input id="loginId" autocomplete="username" placeholder="Enter your ID"></label><label class="field"><span>Password</span><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password"></label><button class="login-btn" id="loginBtn">Log in</button><p id="loginError" class="login-error">${escapeHtml(message)}</p><p class="login-help">Two-user private access</p></div></section></main>`;
+  document.getElementById('loginBtn').onclick=login;
+  document.getElementById('loginPassword').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+}
+async function login(){
+  const id=document.getElementById('loginId').value.trim(),password=document.getElementById('loginPassword').value;
+  const btn=document.getElementById('loginBtn');
+  if(!USERS[id]){document.getElementById('loginError').textContent='Use Harshit or Sapana as the User ID.';return}
+  if(!password){document.getElementById('loginError').textContent='Enter your password.';return}
+  btn.disabled=true;btn.textContent='Logging in…';
+  const {error}=await supabase.auth.signInWithPassword({email:USERS[id].email,password});
+  if(error){document.getElementById('loginError').textContent='Incorrect User ID or password.';btn.disabled=false;btn.textContent='Log in';return}
+  await init();
+}
+async function init(){
+  const {data:{session:s}}=await supabase.auth.getSession();session=s;
+  if(!session){loginScreen();return}
+  renderShell();
+  await loadDashboard();
+}
+function renderShell(){
+  root.innerHTML=`<main class="app"><header class="top"><div class="brand"><div class="logo">✓</div><div><h1>Routine Tracker</h1><p class="date" id="todayDate">${formatDate(todayDate)}</p></div></div><button class="logout" id="logoutBtn">Log out</button></header><section class="hero"><h2 id="greeting">Good morning! 👋</h2><p>Your shared progress, at a glance.</p></section><section class="cards"><article class="card"><div class="label">Today</div><div class="big" id="todayText">${formatDate(todayDate).split(',').slice(1).join(',').trim()}</div><div class="sub">Daily score snapshot</div></article><article class="card"><div class="label">10-Day Average</div><div class="average-value purple" id="combinedAvg">0%</div><div class="sub">Combined average score</div></article><article class="card person"><div class="person-top"><div class="person-name">Harshit</div><span class="you-badge" id="harshitBadge" style="display:none">You</span></div><div class="score-row"><div><div class="score accent" id="harshitScore">0%</div><div class="person-note">Today's score</div></div><div class="sticker boy" aria-label="Boy sticker">👦🏻</div></div><div class="progress"><div class="fill" id="harshitBar"></div></div></article><article class="card person"><div class="person-top"><div class="person-name">Sapana</div><span class="you-badge" id="sapanaBadge" style="display:none">You</span></div><div class="score-row"><div><div class="score purple" id="sapanaScore">0%</div><div class="person-note">Today's score</div></div><div class="sticker girl" aria-label="Girl sticker">👧🏻</div></div><div class="progress"><div class="fill friend" id="sapanaBar"></div></div></article><article class="card average"><div class="average-head"><div><div class="label">Last 10 Days Average Score</div><div class="range">${formatDate(tenDaysAgoDate)} – ${formatDate(todayDate)}</div></div><div style="font-size:28px">📈</div></div><div class="split"><div class="mini"><strong>Harshit</strong><span class="accent" id="harshitAvg">0%</span></div><div class="mini"><strong>Sapana</strong><span class="purple" id="sapanaAvg">0%</span></div></div></article></section><section class="quote"><p>Small steps every day create remarkable results.</p><small>— Keep going. Consistency wins.</small></section><p class="status" id="status" aria-live="polite"></p></main>`;
+  document.getElementById('logoutBtn').onclick=logout;
+}
+async function logout(){await supabase.auth.signOut();session=null;profile=null;friendProfile=null;loginScreen();}
+async function loadDashboard(){
+  try{
+    const p=await supabase.from('profiles').select('*').eq('id',session.user.id).single();
+    profile=p.data;
+    const myName=profile?.display_name || (session.user.email||'').split('@')[0];
+    document.getElementById('greeting').textContent=`Good morning, ${myName}! 👋`;
+    const m=await supabase.from('friendships').select('user_id,friend_id').or(`user_id.eq.${session.user.id},friend_id.eq.${session.user.id}`).eq('status','accepted');
+    const row=m.data?.[0];
+    const fid=row?(row.user_id===session.user.id?row.friend_id:row.user_id):null;
+    if(fid){const f=await supabase.from('profiles').select('*').eq('id',fid).single();friendProfile=f.data;}
+    const t=await supabase.from('tasks').select('*').order('created_at');
+    tasks=t.data||[];
+    const l=await supabase.from('daily_logs').select('*').gte('log_date',tenDaysAgo).lte('log_date',today);
+    const logs=l.data||[];
+    const harshitId=getPersonId('Harshit'),sapanaId=getPersonId('Sapana');
+    const hToday=scoreForDay(harshitId,tasks,logs,today,'Harshit');
+    const sToday=scoreForDay(sapanaId,tasks,logs,today,'Sapana');
+    const hAvg=averageScore(harshitId,tasks,logs,'Harshit');
+    const sAvg=averageScore(sapanaId,tasks,logs,'Sapana');
+    setScore('harshit',hToday);setScore('sapana',sToday);
+    document.getElementById('harshitAvg').textContent=hAvg+'%';document.getElementById('sapanaAvg').textContent=sAvg+'%';document.getElementById('combinedAvg').textContent=Math.round((hAvg+sAvg)/2)+'%';
+    const currentEmail=(session.user.email||'').toLowerCase();
+    if(currentEmail==='harshit@routine.app')document.getElementById('harshitBadge').style.display='inline-block';
+    if(currentEmail==='sapana@routine.app')document.getElementById('sapanaBadge').style.display='inline-block';
+  }catch(e){document.getElementById('status').textContent='Unable to load dashboard data.';}
+}
+function getPersonId(name){
+  const current=(session.user.email||'').toLowerCase();
+  if(name==='Harshit'&&current==='harshit@routine.app')return session.user.id;
+  if(name==='Sapana'&&current==='sapana@routine.app')return session.user.id;
+  if(friendProfile?.display_name?.toLowerCase()===name.toLowerCase())return friendProfile.id;
+  return null;
+}
+function applicable(t,name){return t.applicable_to==='both'||(name==='Harshit'&&t.applicable_to==='me')||(name==='Sapana'&&t.applicable_to==='friend')}
+function scoreForDay(uid,taskList,logs,date,name){
+  if(!uid)return 0;
+  const applicableTasks=taskList.filter(t=>applicable(t,name));if(!applicableTasks.length)return 0;
+  let points=0;
+  for(const t of applicableTasks){const l=logs.find(x=>x.task_id===t.id&&x.user_id===uid&&x.log_date===date);if(t.type==='water')points+=Math.min(Number(l?.quantity||0)/Number(t.target_quantity||3000),1);else if(l?.completed)points+=1;}
+  return Math.round(points/applicableTasks.length*100);
+}
+function averageScore(uid,taskList,logs,name){
+  if(!uid)return 0;
+  let total=0,count=0;for(let i=0;i<10;i++){const d=new Date(tenDaysAgoDate);d.setDate(d.getDate()+i);const date=d.toISOString().slice(0,10);total+=scoreForDay(uid,taskList,logs,date,name);count++;}
+  return count?Math.round(total/count):0;
+}
+function setScore(person,value){document.getElementById(person+'Score').textContent=value+'%';document.getElementById(person+'Bar').style.width=value+'%';}
 init();
 </script>
 </body>
